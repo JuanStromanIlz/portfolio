@@ -1,91 +1,47 @@
 import styled from 'styled-components';
 
-const NewEntry = (props) => (
-  <article className={props.className}>
-    {props.title && <h4 className="media-title">{props.title}</h4>}
-    {props.sub && <h5 className="media-sub">{props.sub}</h5>}
-    {props.content && <p className="media-content">{props.content}</p>}
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            sentiment_satisfied_alt
-          </span>
-        </div>
-        <div><span>04/12/98 (Argentino)</span></div>
-      </div>
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            place
-          </span>
-        </div>
-        <div><span>Parque Patricios (CABA)</span></div>
-      </div>
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            alternate_email
-          </span>
-        </div>
-        <div><span>juanstroman@gmail.com</span></div>
-      </div>
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            insert_link
-          </span>
-        </div>
-        <div><span>jstromanilz</span></div>
-      </div>
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            device_hub
-          </span>
-        </div>
-        <div><span>JuanStromanIlz</span></div>
-      </div>
-      <div className="media-list">
-        <div>
-          <span className="material-icons">
-            phone
-          </span>
-        </div>
-        <div><span>11 39101889</span></div>
-      </div>
-  </article>
+const Contact = (props) => (
+  <section id="personalData"className={props.className}>
+    <h2>let personalData &#61; &#123; </h2>
+    <ul>
+      <li><div><div><p>birth&#58;</p></div><div><p>&emsp;&#39;04/12/98 (Argentino)&#39;&#44;</p></div></div></li>
+      <li><div><div><p>locale&#58;</p></div><div><p>&emsp;&#39;Parque Patricios (CABA)&#39;&#44;</p></div></div></li>
+      <li><div><div><p>email&#58;</p></div><p>&emsp;&#39;juanstroman@gmail.com&#39;&#44;</p></div></li>
+      <li><div><div><p>phone&#58;</p></div><div><p>&emsp;&#39;011 39101889&#39;&#44;</p></div></div></li>
+      <li><div><div><p>linkedIn&#58;</p></div><div><a className="link" href="https://linkedin.com/in/jstromanilz"><p>&emsp;&#39;jstromanilz&#39;&#44;</p></a></div></div></li>
+      <li><div><div><p>gitHub&#58;</p></div><div><a className="link" href="https://github.com/JuanStromanIlz"><p>&emsp;&#39;JuanStromanIlz&#39;</p></a></div></div></li>
+    </ul>
+    <h2>&#125;&#59;</h2>
+  </section>
 );
 
-const StyledNewEntry = styled(NewEntry)`
+const StyledContact = styled(Contact)`
+  grid-column: 1 / 13;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  .media-title {
-    margin-bottom: 0;
-  }
-  .media-sub {
-    margin: .5em 0 1em 0;
-  }
-  .media-content {
-    margin: 0 0 1em 0;
-  }
-  .media-list {
+  padding: 1.3em;
+  div {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+  }
+  ul {
     margin: 0;
-    div:last-child {
-      padding-left: .3em;
+    padding-left: .5em;
+    list-style-type:none;
+    li {
+      p {
+        margin: .3em;
+      }
     }
   }
 `;
 
-export default function SocialMedia(props) {
+export default function SocialMedia() {
   return (
-    <StyledNewEntry 
-      className={StyledNewEntry}
-      title={props.title}
-      sub={props.sub}
-      content={props.content}
-      list={props.list}
+    <StyledContact 
+      className={StyledContact}
     />
   );
 }
