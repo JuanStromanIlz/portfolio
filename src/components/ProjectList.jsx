@@ -16,6 +16,7 @@ const StyledProject = styled(Project)`
   gap: 1em;
   .project-container {
     grid-column: 2 / 12;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     display: grid;
     gap: 1em; 
   }

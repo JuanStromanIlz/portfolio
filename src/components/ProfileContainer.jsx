@@ -44,6 +44,12 @@ const StyledContainer = styled(Container)`
   .section-title {
     grid-column: 1 / 13;
   }
+  .me {
+    grid-column: 1 / 9;
+  }
+  .skills {
+    grid-column: 10 / 13;
+  }
   article {
     display: flex;
     flex-direction: column;
