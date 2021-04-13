@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
 export default function Footer() {
   return (
     <StyledFooter>
-      <p>Pagina realizada utilizando React y styled-components</p>
+      <p>Pagina realizada utilizando React y styled-components.</p>
       <p>Fotografia por <a className="link" href="https://www.instagram.com/rocksselle">Rosselle Pasqualini</a>&emsp;&copy;</p>
       <p>2021 Juan Stroman Ilz&emsp;&copy;</p>
     </StyledFooter>

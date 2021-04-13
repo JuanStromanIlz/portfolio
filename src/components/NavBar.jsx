@@ -56,6 +56,8 @@ const StyledNav = styled(Nav)`
     visibility: hidden;
     background: transparent;
     border: none;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
 `;
 
@@ -73,17 +75,6 @@ const NavContainer = styled.div`
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.4);
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      padding: 1em 0;
-      gap: 2em;
-      > * {
-        margin: 0;
-      }
-    }
   }
   @media (max-width: 1500px) {
     a {
@@ -97,7 +88,7 @@ const NavContainer = styled.div`
   @media (max-width: 480px) {
     ${StyledNav} {
       ul {
-      display: none;
+        display: none;
       }
       .button {
         display: block;
@@ -105,8 +96,8 @@ const NavContainer = styled.div`
       }
     }
     a {
-      font-size: 1rem;
-      line-height: 1rem;
+      font-size: 1.3rem;
+      line-height: 1.3rem;
     }
   }
 `;

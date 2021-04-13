@@ -50,12 +50,11 @@ const StyledContainer = styled(Container)`
     text-align: start;
     padding: 1.3em 0;
     ul {
-      margin: 0;
       padding-left: .5em;
       list-style-type:none;
       li {
         p {
-          margin: .1em;
+          margin: 0 .2em .2em 0;
         }
       }
     }
