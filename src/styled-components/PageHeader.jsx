@@ -83,7 +83,7 @@ const PageHeader = () => {
         <h1 id='headerName'>Juan Stroman Ilz</h1>
         <div className='infoWrapper'>
           <LazyLoad once resize={true}>
-            <img id='profileImg' src={process.env.PUBLIC_URL + 'juan.jpg'} alt='hi!'></img>
+            <img id='profileImg' src={process.env.PUBLIC_URL + '/Juan.jpg'} alt='hi!'></img>
           </LazyLoad>
           <div className='infoText'>
             <p>Desarrollador web y artista.<br/><br/>Con formación en la Universidad Nacional de las Artes encuentro en la programación otra via de expresion donde la informacion y el medio tienen el mismo peso.<br />
