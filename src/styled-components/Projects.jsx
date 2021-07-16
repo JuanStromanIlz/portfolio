@@ -8,9 +8,6 @@ const Projects = styled.div`
     border-bottom: 2px solid ${props => props.theme.colors.text};
     header {
       margin-bottom: 1.6rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       div:first-child {
         h3 {
           font-size: 3rem;
@@ -25,23 +22,21 @@ const Projects = styled.div`
           color: ${props => props.theme.colors.main};
         }
       }
-      div:last-child {
-        margin-left: 1.6rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1.6rem;
-        .button {
-          display: block;
-          transition: .1s ease-out;
-          box-shadow: 0 0 1px 1px ${props => props.theme.colors.main};
-          border-radius: 25px;
-          padding: .2rem 1rem;
-          color: ${props => props.theme.colors.main};
-          text-decoration: none;
-          font-size: 2rem;
-        }
+    }
+    .info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.6rem;
+      .button {
+        display: block;
+        transition: .1s ease-out;
+        box-shadow: 0 0 1px 1px ${props => props.theme.colors.main};
+        border-radius: 25px;
+        padding: .2rem 1rem;
+        color: ${props => props.theme.colors.main};
+        text-decoration: none;
+        font-size: 2rem;
       }
     }
   }
@@ -68,20 +63,14 @@ const Projects = styled.div`
         h3 {
           font-size: 5.2rem !important;
         }
-        div:last-child {
-          flex-direction: row !important;
-          .button {
-            padding-top: .4rem;
-            padding-bottom: .4rem;
+        .articleText {
+          max-width: 60%;
+          p {
+            padding-right: 1.6rem;
           }
         }
       }
-      .articleText {
-        max-width: 60%;
-        p {
-          padding-right: 1.6rem;
-        }
-      }
+      
     }
   }
 `;
@@ -99,13 +88,13 @@ const ProjectsContainer = () => {
                 <h3><a href='https://merramarie.vercel.app/' target='_blank'>Merra Marie Portfolio</a></h3>
                 <span>#fotografia #video #blog</span>
               </div>
-              <div>
-                <a className='button' href='https://github.com/JuanStromanIlz/merramarie-front/' target='_blank'>Github</a>
-                <a className='button' href='https://merramarie.vercel.app/' target='_blank'>Online</a>
+              <div className='articleText'>
+                <p>Portfolio y blog personal para la artista visual Merra Marie.<br />Cuenta con un servidor para subir, editar y eliminar los archivos que se muestran al publico en la web.</p>
               </div>
             </header>
-            <div className='articleText'>
-              <p>Portfolio y blog personal para la artista visual Merra Marie.<br />Cuenta con un servidor para subir, editar y eliminar los archivos que se muestran al publico en la web.</p>
+            <div className='info'>
+              <a className='button' href='https://github.com/JuanStromanIlz/merramarie-front/' target='_blank'>Github</a>
+              <a className='button' href='https://merramarie.vercel.app/' target='_blank'>Online</a>
             </div>
           </article>
         </div>

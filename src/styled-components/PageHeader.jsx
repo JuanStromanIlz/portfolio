@@ -24,8 +24,7 @@ const Header = styled.header`
       -webkit-text-stroke: 1px black;
       color: white;
       margin-bottom: 1.6rem;
-      text-shadow: .4rem .3rem 0 ${props => props.theme.colors.main};
-      z-index: 1;
+      text-shadow: .3rem .3rem 0 ${props => props.theme.colors.main};
     }
     #profileImg {
       width: 100%;
@@ -86,10 +85,10 @@ const PageHeader = () => {
             <img id='profileImg' src={process.env.PUBLIC_URL + '/Juan.jpg'} alt='hi!'></img>
           </LazyLoad>
           <div className='infoText'>
-            <p>Desarrollador web y artista.<br/><br/>Con formación en la Universidad Nacional de las Artes encuentro en la programación otra via de expresion donde la informacion y el medio tienen el mismo peso.<br />
-              Me fascinan los diseños abiertos, de pocos objectos y con estetica marcada, siempre buscando un equilibrio entre el contenido a mostrar y la forma de mostrarlo.<br />
-              Hagamos contacto!
-            </p>
+            <p>Desarrollador web y artista.</p>
+            <p>Con formación en la Universidad Nacional de las Artes encuentro en la programación una via de expresion donde la informacion y el medio tienen el mismo peso.</p>
+            <p>Me fascinan los diseños abiertos, de pocos objectos y con una estetica marcada. Siempre buscando un equilibrio entre el contenido y la forma de mostrarlo.</p>
+            <p>¡Hagamos contacto!</p>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const Nav = styled.nav`
   padding: 0 1.6rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1;
   background: ${props => props.theme.colors.backgroundSolid};
   .navWrapper { 
     padding: 1.6rem 0;

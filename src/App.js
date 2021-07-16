@@ -5,11 +5,13 @@ import { ThemeProvider } from 'styled-components';
 import { Projects } from "./styled-components/Projects";
 import { Contacto } from "./styled-components/Contacto";
 import { Footer } from "./styled-components/Footer";
+import { Loading } from "./styled-components/Loading";
 
 function App() {
   return (
     <ThemeProvider theme={themeWhite}>
       <GlobalStyles />
+      <Loading />
       <Navbar />
       <PageHeader />
       <Projects />
