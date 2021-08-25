@@ -2,82 +2,112 @@ import styled from 'styled-components';
 import { scroller, animateScroll } from 'react-scroll';
 import { useState, useEffect } from 'react';
 
-const Nav = styled.nav`
-  padding: 0 1.6rem;
+const NavContainer = styled.nav`
   position: sticky;
-  top: 0;
+  top: 1.6rem;
   z-index: 1;
-  background: ${props => props.theme.colors.backgroundSolid};
-  .navWrapper { 
-    padding: 1.6rem 0;
-    border-bottom: 2px solid ${props => props.theme.colors.black};
+  #wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 45px;
     ul {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      margin: 0;
+      padding: 0;
       li {
-        margin: auto 0;
-        span {
-          display: block;
-          cursor: pointer;
-          margin: auto 0;
+        display: flex;
+        margin: auto;
+        padding: .4rem 1.6rem;
+        a {
+          color: inherit;
           text-decoration: none;
-          color: ${props => props.theme.colors.black};
-          text-transform: uppercase;
-          font-weight: 600;
         }
       }
     }
-    #backToTop {
+    #menuButton {
+      font-weight: inherit;
+      font-size: inherit;
+      padding: .4rem 1.6rem;
+      border-radius: 25px;
+      margin: auto 0;
+      border: 1px solid ${props => props.theme.black}; 
+      background: ${props => props.theme.white};
+    }
+    #pages {
+      display: none;
+    }
+    #social {
+      display: none;
+      li:first-child {
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        border: 1px solid ${props => props.theme.black}; 
+      }
+      li:last-child {
+        background: ${props => props.theme.black};
+        color: ${props => props.theme.white};
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        border: 1px solid ${props => props.theme.black};
+        border-left: none;
+      }
+    }
+    #menu {
       position: fixed;
-      left: 1.6rem;
-      bottom: 4.6rem;
-      border-radius: 50%;
-      width: 15vw;
-      max-width: 40px;
-      aspect-ratio: 1;
+      top: 61px;
+      left: 0;
+      right: 0;
+      padding: 1.6rem;
+      transition: .6s;
+      transform: translateX(-100%);
+      background: ${props => props.theme.white};
+    }
+    .menu__open {
+      transform: translateX(0) !important;
     }
   }
-  .selected {
-    color: ${props => props.theme.colors.main} !important; 
+  @media (hover:hover) {
+    #pages li:hover {
+      color: ${props => props.theme.green};
+    }
+  }
+  @media (min-width: 920px) {
+    #wrapper {
+      #menuButton {
+        display: none;
+      }
+      #pages, #social {
+        display: flex;
+      }
+    }
   }
 `;
 
 const Navbar = () => {
-  const [menu, setMenu] = useState(null);
-  function scrollTo(index) {
-    setMenu(index);
-    scroller.scrollTo(index, {
-      duration: 1500,
-      delay: 100,
-      smooth: true
-    });
+  function openMenu() {
+    document.getElementById('menu').classList.toggle('menu__open');
   }
-  function scrollToTop() {
-    setMenu(null);
-    animateScroll.scrollToTop();
-  }
-
-  useEffect(() => {
-    function onScroll() {
-      let icon = document.getElementById('backToTop');
-      icon.style.transform = "rotate(" + window.pageYOffset/2 + "deg)";
-    }
-    window.addEventListener('scroll', onScroll);
-    return ()=> window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <Nav>
-      <div className='navWrapper'>
-        <ul>
-          <li><span className={`${menu === 'proyectos' && 'selected'}`} onClick={() => scrollTo('proyectos')}>trabajos</span></li>
-          <li><span className={`${menu === 'contacto' && 'selected'}`} onClick={() => scrollTo('contacto')}>contacto</span></li>
+    <NavContainer>
+      <div id='wrapper'>
+        <button onClick={openMenu} id='menuButton'>Menu</button>
+        <ul id='pages'>
+          <li><a href='#sobreMi'>Sobre Mi</a></li>
+          <li><a href='#trabajos'>Trabajos</a></li>
+          <li><a href='#proyectos'>Proyectos</a></li>
         </ul>
-        <img id='backToTop' src={process.env.PUBLIC_URL + 'icon.svg'} alt='home' onClick={scrollToTop}></img>
+        <ul id='social'>
+          <li><a href='/'>LinkedIn</a></li>
+          <li><a href='/'>GitHub</a></li>
+        </ul>
+        <div id='menu'>
+          a
+        </div>
       </div>
-    </Nav>
+    </NavContainer>
   );
 };
 
-export { Navbar };
+export default Navbar;

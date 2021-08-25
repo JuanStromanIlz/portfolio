@@ -13,13 +13,28 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Urbanist', sans-serif;
     font-size: 1.6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: ${props => props.theme.colors.backgroundSolid};
-    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.white};
+    color: ${props => props.theme.black};
+  }
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }
+  h1, h2, h3, h4, h5, h6, p, a {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    font-style: inherit;
+  }
+  #appWrapper {
+    padding: 1.6rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   ul {
     margin: 0;
@@ -29,13 +44,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const themeWhite = {
-  colors: {
-    main: 'blue',
-    text: 'black',
-    lines: 'black',
-    background: 'rgba(255,255,255, .7)',
-    backgroundSolid: 'white'
-  }
+  black: '#121212',
+  green: '#21B534',
+  white: '#F5F5F5'
 };
 
 export { GlobalStyles, themeWhite };

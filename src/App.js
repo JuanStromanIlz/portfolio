@@ -1,22 +1,16 @@
 import { GlobalStyles, themeWhite } from "./styled-components/GlobalStyles";
-import { Navbar } from "./styled-components/Navbar";
-import { PageHeader } from "./styled-components/PageHeader";
+import Navbar from "./styled-components/Navbar";
 import { ThemeProvider } from 'styled-components';
-import { Projects } from "./styled-components/Projects";
-import { Contacto } from "./styled-components/Contacto";
-import { Footer } from "./styled-components/Footer";
-import { Loading } from "./styled-components/Loading";
+import Section from "./styled-components/Section";
 
 function App() {
   return (
     <ThemeProvider theme={themeWhite}>
       <GlobalStyles />
-      <Loading />
-      <Navbar />
-      <PageHeader />
-      <Projects />
-      <Contacto />
-      <Footer />
+      <div id='appWrapper'>
+        <Navbar />
+        <Section />
+      </div>
     </ThemeProvider>
   );
 }
