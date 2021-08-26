@@ -32,9 +32,12 @@ const GlobalStyles = createGlobalStyle`
     font-style: inherit;
   }
   #appWrapper {
-    padding: 1.6rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    > * {
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
   }
   ul {
     margin: 0;
@@ -42,7 +45,6 @@ const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 `;
-
 const themeWhite = {
   black: '#121212',
   green: '#21B534',

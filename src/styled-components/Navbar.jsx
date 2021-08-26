@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 
 const NavContainer = styled.nav`
   position: sticky;
-  top: 1.6rem;
+  top: 0;
+  padding: 1.6rem 0;
   z-index: 1;
+  background: ${props => props.theme.white};
   #wrapper {
     display: flex;
     flex-direction: row;
@@ -14,8 +16,6 @@ const NavContainer = styled.nav`
     ul {
       display: flex;
       flex-direction: row;
-      margin: 0;
-      padding: 0;
       li {
         display: flex;
         margin: auto;
@@ -59,6 +59,7 @@ const NavContainer = styled.nav`
       top: 61px;
       left: 0;
       right: 0;
+      bottom: 0;
       padding: 1.6rem;
       transition: .6s;
       transform: translateX(-100%);
@@ -103,7 +104,11 @@ const Navbar = () => {
           <li><a href='/'>GitHub</a></li>
         </ul>
         <div id='menu'>
-          a
+          <ul>
+            <li><a href='#sobreMi'>Sobre Mi</a></li>
+            <li><a href='#trabajos'>Trabajos</a></li>
+            <li><a href='#proyectos'>Proyectos</a></li>
+          </ul>
         </div>
       </div>
     </NavContainer>

@@ -33,9 +33,13 @@ const SliderContainer = styled.div`
       display: flex;
       flex-direction: column;
       .cardImg {
-        width: 100%;
-        height: 60%;
-        object-fit: contain;
+        display: flex;
+        img {
+          margin: auto;
+          width: 90%;
+          height: 90%;
+          object-fit: scale-down;
+        }
       }
       .cardInfo {
         margin: auto 0;
@@ -62,7 +66,7 @@ const SliderContainer = styled.div`
       flex-direction: row;
       .cardImg {
         width: 60%;
-        height: 100%;
+        height: 90%;
       }
     }
   }
@@ -139,7 +143,9 @@ const Slider = ({folders}) => {
       <div className='cardContainer'>
         {folders.map((card, i) => 
           <div key={i} className={`card  ${indexCard === i ? 'card__show' : null}`}>
-            <img className='cardImg' src={card.images[0].url} alt='folder' />
+            <div className='cardImg'>
+              <img src={card.images[0].url} alt='folder' />
+            </div>
             <div className='cardInfo'>
               <h2 className='title'>{card.title}</h2>
               <p className='description'>{card.description}</p>
