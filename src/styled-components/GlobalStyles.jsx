@@ -46,8 +46,8 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 const themeWhite = {
-  black: '#121212',
-  green: '#21B534',
+  black: '#080808',
+  main: '#21B534',
   white: '#F5F5F5'
 };
 

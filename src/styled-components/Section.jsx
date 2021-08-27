@@ -5,161 +5,164 @@ import { useEffect } from 'react';
 const SectionContainer = styled.section`
   margin-top: 1.6rem;
   header {
-    display: flex;
-    overflow: hidden;
+    border-bottom: 1px solid ${props => props.theme.main};
     .sectionTitle {
-      transition: .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateY(100%);
       font-size: 6rem;
       font-weight: 700;
+      text-align: center;
       margin: 1.6rem 0;
-    }
-    .sectionTitle__show {
-      transform: translateY(0);
+      color: ${props => props.theme.main};
     }
   }
-  .slider {
-    border-top: 1px solid ${props => props.theme.black};
-    border-bottom: 1px solid ${props => props.theme.black};
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
-    width: 100%;
-    overflow-x: scroll;
-    display: flex;
-    gap: .8rem;
-    box-sizing: border-box;
-    scroll-snap-type: x mandatory;
-  }
-  .list {
-    border-top: 1px solid ${props => props.theme.black};
-    border-bottom: 1px solid ${props => props.theme.black};
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
-    display: grid;
-    grid-template-columns: auto;
-    gap: 1.6rem;
-    .card {
-      width: 100%;
-    }
-  }
-  .card {
-    flex: 0 0 calc(100% - 3.2rem);
-    width: calc(100% - 3.2rem);
-    scroll-snap-align: start;
+  .content {
     display: flex;
     flex-direction: column;
-    .cardImg {
-      width: 100%;
-      max-width: 600px;
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin: auto;
-        object-fit: scale-down;
-      }
-    }
-    .cardInfo {
+    .card {
       margin-top: 1.6rem;
       height: 100%;
       display: flex;
       flex-direction: column;
+      transition: .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       .title {
-        margin-bottom: .6rem;
+        font-size: 3rem;
         font-weight: 500;
       }
-      .description {
-        margin-bottom: 1.6rem;
+      .sub {
+        font-size: 2rem;
+        margin-bottom: .8rem;
       }
       .footer {
-        margin-top: auto;
+        margin-top: 1.6rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-direction: row;
         gap: .8rem;
         li {
-          display: flex;
-          padding: .4rem 1.6rem;
+          transition: .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          background: ${props => props.theme.black};
+          color: ${props => props.theme.white};
           border-radius: 25px;
-          margin: auto 0;
-          background: ${props => props.theme.black}; 
-          border: 1px solid ${props => props.theme.black}; 
+          padding: .4rem 1.6rem;
+          font-size: 1.8rem;
+          border: 1px solid ${props => props.theme.black};
           a {
-            font-size: 1.6rem;
-            color: ${props => props.theme.white}; 
+            color: ${props => props.theme.white};
             text-decoration: none;
           }
         }
       }
+      .keyWords {
+        display: flex;
+        flex-direction: row;
+        gap: 1.6rem;
+        li {
+          opacity: .8;
+        }
+      }
+      .cardImgs {
+        margin-bottom: 1.6rem;
+        width: 100%;
+        max-height: 350px;
+        overflow-x: scroll;
+        display: flex;
+        gap: .8rem;
+        box-sizing: border-box;
+        scroll-snap-type: x mandatory;
+        .image {
+          flex: 0 0 90%;
+          width: 90%;
+          scroll-snap-align: start;
+          display: flex;
+          flex-direction: column;
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            object-fit: scale-down;
+          }
+        }
+      }
+      .description {
+        margin-left: auto;
+        margin-right: auto;
+        p {
+          margin-bottom: .8rem;
+        }
+      }
+    }
+    .card__show {
+      opacity: 1;
+    }
+  }
+  @media (hover:hover) {
+    .footer li:hover {
+      background: ${props => props.theme.main} !important;
+      border: 1px solid ${props => props.theme.main} !important;
     }
   }
   @media (min-width: 920px) {
-    .list {
-      grid-template-columns: repeat(3, auto);
-    }
-    .slider .card {
-      flex-direction: row;
-      .cardInfo {
-        height: inherit;
-        margin: auto;
+    .content .card {
+      .description {
+        width: 70%;
+      }
+      .cardImgs .image {
+        flex: 0 0 60%;
+        width: 60%;
       }
     }
   }
 `;
 
-export default function Section({id, title, folders, slider}) {
+export default function Section({id, title, folders}) {
   const [ref, inView, entry] = useInView({
     triggerOnce: true,
     delay: 400,
   });
   useEffect(() => {
     if (inView) {
-      entry.target.classList.add('sectionTitle__show');
+      entry.target.classList.add('card__show');
     }
   },[entry, inView]);
 
   return (
     <SectionContainer id={id}>
       <header>
-        <h2 ref={ref} className='sectionTitle'>{title}</h2>
+        <h2 className='sectionTitle'>{title}</h2>
       </header>
-      {slider === true ? 
-        <div className='slider'>
-          {folders.map(item => 
-            <div className='card'>
-              <div className='cardImg'>
-                <img src='https://res.cloudinary.com/juanstromanilz/image/upload/v1626446576/Proyectos/Merramarie/merramarie5_de8ujd.png' alt='foto del proyecto' />
+      <div className='content'>
+        {folders.map(item => 
+          <div ref={ref} className='card'>
+            <h2 className='title'>{item.title}</h2>
+            <h3 className='sub'>{item.sub}</h3>
+            {item.key_words ? 
+              <ul className='keyWords'>
+                {item.key_words.map(word =>
+                  <li>{word}</li>
+                )}
+              </ul>
+            : null}
+            <ul className='footer'>
+              {item.online ? <li><a href={item.online}>Online</a></li> : null}
+              {item.github ? <li><a href={item.github}>GitHub</a></li> : null}
+            </ul>
+            {item.images ? 
+              <div className='cardImgs'>
+                {item.images.map(img => 
+                  <div className='image'>
+                    <img src={img} />
+                  </div>
+                )}
               </div>
-              <div className='cardInfo'>
-                <h2 className='title'>{item.title}</h2>
-                <p className='description'>{item.description}</p>
-                <ul className='footer'>
-                  <li><a href='/'>Online</a></li>
-                  <li><a href='/'>GitHub</a></li>
-                </ul>
-              </div>
+            : null}
+            <div className='description'>
+              {item.description.map(p => 
+                <p>{p}</p>
+              )}
             </div>
-          )}
-        </div>
-      :
-        <div className='list'>
-          {folders.map(item => 
-              <div className='card'>
-                <div className='cardImg'>
-                  <img src='https://res.cloudinary.com/juanstromanilz/image/upload/v1626446576/Proyectos/Merramarie/merramarie5_de8ujd.png' alt='foto del proyecto' />
-                </div>
-                <div className='cardInfo'>
-                  <h2 className='title'>{item.title}</h2>
-                  <p className='description'>{item.description}</p>
-                  <ul className='footer'>
-                    <li><a href='/'>Online</a></li>
-                    <li><a href='/'>GitHub</a></li>
-                  </ul>
-                </div>
-              </div>
-            )}
-        </div>
-      }
-      
+          </div>
+        )}
+      </div>
     </SectionContainer>
   );
 }

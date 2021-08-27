@@ -64,6 +64,12 @@ const NavContainer = styled.nav`
       transition: .6s;
       transform: translateX(-100%);
       background: ${props => props.theme.white};
+      ul {
+        height: 100%;
+        li {
+          
+        }
+      }
     }
     .menu__open {
       transform: translateX(0) !important;

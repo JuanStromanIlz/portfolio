@@ -1,0 +1,27 @@
+[ 
+  {
+    "title": "Merra Marie porfolio de artista",
+    "sub": "Portfolio personal",
+    "description": [
+      "Merra es una artista multidisciplinaria originaria de Viedma y radicada en ciudad autónoma de buenos aires. Sus obras se mueven por los campos de la fotografía y video documental hasta el collage y la producción de texto.",
+      "Iniciamos el diseño desde su imaginario, buscando los colores más presentes en sus producciones, así como la atmosfera general de sus proyectos.",
+      "El desarrollo del back-end consistió en la realización de un CRUD en <strong>node.js</strong>, mediante el cual (autenticación de usuario de por medio) se administran las distintas entradas.<br/> A lo largo de distintas video llamadas comenzamos el proceso de selección y <strong>clasificación</strong> de las obras, para poder llevar a cabo la producción de los modelos correspondientes.",
+      "Para el front-end se mostraron distintas referencias y la artista trajo las propias, desde detalles que le llamaban la atención hasta paginas referenciadas de colegas.",
+      "Luego de contar con el diseño final de cada vista, las mismas se montaron en el framework <strong>next.js</strong> para poder contar con cada vista pre-renderizada y lograr mejores meta tags a la hora de compartir sus proyectos en redes sociales."
+    ],
+    "key_words": [
+      "react.js",
+      "node.js",
+      "next.js"
+    ],
+    "images": [
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1626446576/Proyectos/Merramarie/merramarie5_de8ujd.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1626446573/Proyectos/Merramarie/merramarie3_umkpsg.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1626446567/Proyectos/Merramarie/merramarie1_q5nbm0.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1626446569/Proyectos/Merramarie/merramarie2_yse3yl.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1626446566/Proyectos/Merramarie/merramarie4_zbu7bh.png"
+    ],
+    "github": "https://github.com/JuanStromanIlz/merramarie-nextjs",
+    "online": "https://github.com/JuanStromanIlz/merramarie-nextjs"
+  }
+]
