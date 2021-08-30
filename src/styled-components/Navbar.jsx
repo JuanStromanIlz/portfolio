@@ -5,69 +5,82 @@ import { useState, useEffect } from 'react';
 const NavContainer = styled.nav`
   position: sticky;
   top: 0;
-  padding: 1.6rem 0;
-  z-index: 1;
-  background: ${props => props.theme.white};
+  z-index: 8;
   #wrapper {
+    padding-top: 1.6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 45px;
-    ul {
-      display: flex;
-      flex-direction: row;
-      li {
-        display: flex;
+    #menuButton {
+      z-index: 10;
+      margin: 0;
+      padding: 0;
+      border: inherit;
+      background: inherit;
+      img {
+        display: block;
         margin: auto;
-        padding: .4rem 1.6rem;
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+        height: 45px;
       }
     }
-    #menuButton {
-      font-weight: inherit;
-      font-size: inherit;
-      padding: .4rem 1.6rem;
-      border-radius: 25px;
-      margin: auto 0;
-      border: 1px solid ${props => props.theme.black}; 
+    .menuButton__open {
       background: ${props => props.theme.white};
     }
     #pages {
       display: none;
-    }
-    #social {
-      display: none;
-      li:first-child {
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-        border: 1px solid ${props => props.theme.black}; 
-      }
-      li:last-child {
+      flex-direction: row;
+      gap: 1.6rem;
+      li {
+        border-radius: 25px;
         background: ${props => props.theme.black};
         color: ${props => props.theme.white};
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
-        border: 1px solid ${props => props.theme.black};
-        border-left: none;
+        padding: .4rem .8rem;
+        font-size: 1.8rem;
+        :hover {
+          background: ${props => props.theme.main};
+        }
       }
     }
     #menu {
+      z-index: 9;
       position: fixed;
-      top: 61px;
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 1.6rem;
       transition: .6s;
       transform: translateX(-100%);
-      background: ${props => props.theme.white};
-      ul {
-        height: 100%;
-        li {
-          
+      background: ${props => props.theme.main};
+      .menuContainer {
+        margin-top: 61px;
+        padding: 1.6rem .8rem;
+        color: ${props => props.theme.black};
+        .contact {
+          gap: .8rem;
+          li {
+            font-size: inherit;
+            font-weight: inherit;
+            span {
+              font-weight: 700;
+              margin-right: .4rem;
+            }
+            a {
+              color: ${props => props.theme.white};
+              text-decoration: underline;
+            }
+          }
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          li {
+            font-size: 6rem;
+            font-weight: 700;
+            a {
+              color: inherit;
+              text-decoration: none;
+            }
+          }
         }
       }
     }
@@ -75,18 +88,16 @@ const NavContainer = styled.nav`
       transform: translateX(0) !important;
     }
   }
-  @media (hover:hover) {
-    #pages li:hover {
-      color: ${props => props.theme.green};
-    }
-  }
   @media (min-width: 920px) {
     #wrapper {
       #menuButton {
         display: none;
       }
-      #pages, #social {
+      #pages {
         display: flex;
+      }
+      #menu {
+        display: none;
       }
     }
   }
@@ -94,27 +105,30 @@ const NavContainer = styled.nav`
 
 const Navbar = () => {
   function openMenu() {
+    document.getElementById('menuButton').classList.toggle('menuButton__open');
     document.getElementById('menu').classList.toggle('menu__open');
   }
   return (
     <NavContainer>
       <div id='wrapper'>
-        <button onClick={openMenu} id='menuButton'>Menu</button>
+        <button onClick={openMenu} id='menuButton'>
+          <img src='/icons/menu.svg' alt='menu' />
+        </button>
         <ul id='pages'>
           <li><a href='#sobreMi'>Sobre Mi</a></li>
           <li><a href='#trabajos'>Trabajos</a></li>
-          <li><a href='#proyectos'>Proyectos</a></li>
-        </ul>
-        <ul id='social'>
-          <li><a href='/'>LinkedIn</a></li>
-          <li><a href='/'>GitHub</a></li>
         </ul>
         <div id='menu'>
-          <ul>
-            <li><a href='#sobreMi'>Sobre Mi</a></li>
-            <li><a href='#trabajos'>Trabajos</a></li>
-            <li><a href='#proyectos'>Proyectos</a></li>
-          </ul>
+          <div className='menuContainer'>
+            <ul className='contact'>
+              <li><span>email:</span><a href='mailto:juanstroman@gmail.com'>juanstroman@gmail.com</a></li>
+              <li><span>linkedin:</span><a href='https://www.linkedin.com/in/jstromanilz'>jstromanilz</a></li>
+            </ul>
+            <ul>
+              <li><a href='#sobreMi'>Sobre Mi</a></li>
+              <li><a href='#trabajos'>Trabajos</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </NavContainer>

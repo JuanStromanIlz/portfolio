@@ -1,19 +1,23 @@
 import { GlobalStyles, themeWhite } from "./styled-components/GlobalStyles";
-import Navbar from "./styled-components/Navbar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import Section from "./styled-components/Section";
-import trabajos from './trabajos.json';
-import proyectos from './proyectos.json';
+import Home from "./pages/Home";
+import Folder from "./pages/Folder";
 
 function App() {
   return (
     <ThemeProvider theme={themeWhite}>
       <GlobalStyles />
-      <div id='appWrapper'>
-        <Navbar />
-        <Section id='trabajos' folders={trabajos} title='Trabajos'/>
-        <Section id='proyectos' folders={proyectos} title='Proyectos'/>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/:title' component={Folder} />
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }

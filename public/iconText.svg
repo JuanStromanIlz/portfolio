@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="400px" viewBox="0 0 100 100" width="400px">
-  <!-- <circle cx="50" cy="50" r="50" fill="red" /> -->
-  <path id="circle" d="M0,50a50,50 0 1,0 100,0a50,50 0 1,0 -100,0" fill="transparent"/>
-  <text fill="red">
-    <textPath href="#circle" font-size="10px">
-      Juan Stroman Ilz * Juan Stroman Ilz * Juan Stroman Ilz * Juan Stroman Ilz * 
-    </textPath>
-  </text>
-</svg>

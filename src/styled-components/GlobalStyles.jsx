@@ -1,6 +1,27 @@
 import { createGlobalStyle } from "styled-components";
+import HaasRg from '../fonts/Haas/HaasRg.ttf';
+import HaasMd from '../fonts/Haas/HaasMd.ttf';
+import HaasBd from '../fonts/Haas/HaasBd.ttf';
 
 const GlobalStyles = createGlobalStyle`
+  @font-face {
+    font-family: HaasRg;
+    font-style: normal;
+    font-weight: 400;
+    src: url(${HaasRg});
+  }
+  @font-face {
+    font-family: HaasMd;
+    font-style: normal;
+    font-weight: 400;
+    src: url(${HaasMd});
+  }
+  @font-face {
+    font-family: HaasBd;
+    font-style: normal;
+    font-weight: 400;
+    src: url(${HaasBd});
+  }
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -13,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'HaasRg', sans-serif;
     font-size: 1.6rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
