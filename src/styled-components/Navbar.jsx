@@ -1,18 +1,16 @@
 import styled from 'styled-components';
-import { scroller, animateScroll } from 'react-scroll';
-import { useState, useEffect } from 'react';
+import Button from './Button';
 
 const NavContainer = styled.nav`
   position: sticky;
   top: 0;
-  z-index: 8;
+  z-index: 10;
   #wrapper {
     padding-top: 1.6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     #menuButton {
-      z-index: 10;
       margin: 0;
       padding: 0;
       border: inherit;
@@ -30,20 +28,10 @@ const NavContainer = styled.nav`
       display: none;
       flex-direction: row;
       gap: 1.6rem;
-      li {
-        border-radius: 25px;
-        background: ${props => props.theme.black};
-        color: ${props => props.theme.white};
-        padding: .4rem .8rem;
-        font-size: 1.8rem;
-        :hover {
-          background: ${props => props.theme.main};
-        }
-      }
     }
     #menu {
-      z-index: 9;
       position: fixed;
+      opacity: 0;
       top: 0;
       left: 0;
       right: 0;
@@ -51,26 +39,55 @@ const NavContainer = styled.nav`
       transition: .6s;
       transform: translateX(-100%);
       background: ${props => props.theme.main};
+      .closeMenu {
+        padding-top: 1.6rem;
+        padding-left: .8rem;
+        padding-right: .8rem;
+        display: flex;
+        flex-direction: row;
+        button {
+          margin: 0;
+          padding: 0;
+          border: inherit;
+          background: inherit;
+          img {
+            display: block;
+            margin: auto;
+            height: 45px;
+          }
+        }
+      }
       .menuContainer {
-        margin-top: 61px;
         padding: 1.6rem .8rem;
-        color: ${props => props.theme.black};
+        color: ${props => props.theme.white};
         .contact {
-          gap: .8rem;
+          margin-bottom: 1.6rem;
           li {
-            font-size: inherit;
-            font-weight: inherit;
-            span {
-              font-weight: 700;
+            border-bottom: 1px solid ${props => props.theme.white};
+            padding-bottom: .4rem;
+            margin-bottom: .4rem;
+            display: flex;
+            flex-direction: row;
+            .title {
+              min-width: 30%;
               margin-right: .4rem;
             }
             a {
-              color: ${props => props.theme.white};
-              text-decoration: underline;
+              transition: .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              color: inherit;
+              text-decoration: none;
+              backdrop-filter: brightness(.8);
+            }
+            .list {
+              flex-grow: 1;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: .8rem;
             }
           }
         }
-        ul {
+        .sections {
           display: flex;
           flex-direction: column;
           li {
@@ -85,7 +102,14 @@ const NavContainer = styled.nav`
       }
     }
     .menu__open {
+      opacity: 1 !important;
       transform: translateX(0) !important;
+    }
+  }
+  @media (hover:hover) {
+    #menuContainer a:hover {
+      text-decoration: underline !important;
+      backdrop-filter: brightness(1) !important;
     }
   }
   @media (min-width: 920px) {
@@ -115,18 +139,25 @@ const Navbar = () => {
           <img src='/icons/menu.svg' alt='menu' />
         </button>
         <ul id='pages'>
-          <li><a href='#sobreMi'>Sobre Mi</a></li>
-          <li><a href='#trabajos'>Trabajos</a></li>
+          <li><Button><a href='/#sobreMi'>Sobre Mi</a></Button></li>
+          <li><Button><a href='/#trabajos'>Trabajos</a></Button></li>
+          <li><Button><a href='https://www.linkedin.com/in/jstromanilz'>Linkedin</a></Button></li>
+          <li><Button><a href='mailto:juanstroman@gmail.com'>Email</a></Button></li>
         </ul>
         <div id='menu'>
+          <div className='closeMenu'>
+            <button onClick={openMenu}>
+              <img src='/icons/menuWhite.svg' alt='menu' />
+            </button>
+          </div>
           <div className='menuContainer'>
             <ul className='contact'>
-              <li><span>email:</span><a href='mailto:juanstroman@gmail.com'>juanstroman@gmail.com</a></li>
-              <li><span>linkedin:</span><a href='https://www.linkedin.com/in/jstromanilz'>jstromanilz</a></li>
+              <li><span className='title'>email:</span><a href='mailto:juanstroman@gmail.com'>juanstroman@gmail.com</a></li>
+              <li><span className='title'>linkedin:</span><a href='https://www.linkedin.com/in/jstromanilz'>jstromanilz</a></li>
             </ul>
-            <ul>
-              <li><a href='#sobreMi'>Sobre Mi</a></li>
-              <li><a href='#trabajos'>Trabajos</a></li>
+            <ul className='sections'>
+              <li><a onClick={openMenu} href='/#sobreMi'>Sobre Mi</a></li>
+              <li><a onClick={openMenu} href='/#trabajos'>Trabajos</a></li>
             </ul>
           </div>
         </div>

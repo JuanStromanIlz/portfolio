@@ -81,8 +81,8 @@ const CardContainer = styled.div`
 `;
 
 export default function Card ({info, index}) {
-  const [ref, inView, entry] = useInView({
-    threshold: .8,
+  const [ref, inView] = useInView({
+    threshold: .1,
     triggerOnce: true
   });
 

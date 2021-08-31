@@ -68,7 +68,8 @@ const GlobalStyles = createGlobalStyle`
 `;
 const themeWhite = {
   black: '#080808',
-  main: '#21B534',
+  main: '#080357',
+  second: '#ACACDE',
   white: '#F5F5F5'
 };
 
