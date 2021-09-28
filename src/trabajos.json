@@ -1,5 +1,24 @@
 [ 
   {
+    "title": "Bajo Naranja Manifiesto",
+    "sub": "¡Una página que aporta al contenido de una película!",
+    "description": [
+      "El equipo de arte me encargo una página que sería usada por la agrupación que encabeza el film en la ficción, donde estos volcarían el manifiesto de su trabajo. Desde este enunciado encare el proyecto prestando especial atención a las referencias estéticas que llevaría este grupo, siendo el fanzine y la clandestinidad las aristas más predominantes.",
+      "Siguiendo con la estética fanzine DIY es que el título de este manifiesto está escrito a mano por el director y se muestra en orden alfabético en referencia a los títulos de apertura de una de las películas citadas como inspiración del film (Pierrot le fou 1965). Otro punto fuerte del diseño es el subrayado o el peso de palabras dentro del propio texto, se generaron distintos estilos para destacar las partes que se consideraban de mayor interés y para generar ese efecto de clandestinidad, estas mismas palabras son tachadas al momento de dejar la pantalla del lector."
+    ],
+    "key_words": [
+      "react.js",
+      "styled-components"
+    ],
+    "images": [
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1632848263/Proyectos/Bajo%20Naranja/bajonaranja1_qmzxtj.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1632848263/Proyectos/Bajo%20Naranja/bajonaranja2_hgk5n2.png",
+      "https://res.cloudinary.com/juanstromanilz/image/upload/v1632848263/Proyectos/Bajo%20Naranja/bajonaranja3_l16qi8.png"
+    ],
+    "github": ["https://github.com/JuanStromanIlz/bajo-naranja", "bajo-naranja"],
+    "online": ["http://bajonaranja.com/manifiesto", "bajonaranja.com"]
+  },
+  {
     "title": "Merra Marie porfolio de artista",
     "sub": "Portfolio personal",
     "description": [
