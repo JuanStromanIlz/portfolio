@@ -1,22 +1,38 @@
-import { GlobalStyles, themeWhite } from "./components/GlobalStyles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
 import Home from "./pages/Home";
 import Folder from "./pages/Folder";
 import { ChakraProvider } from "@chakra-ui/provider";
+import { extendTheme } from "@chakra-ui/react";
+
+const newTheme = extendTheme({
+  colors: {
+    brand: {
+      50: "#e8e5ff",
+      100: "#b9b5fc",
+      200: "#8c84f9",
+      300: "#5e53f6",
+      400: "#3323f3",
+      500: "#1d0cda",
+      600: "#1608aa",
+      700: "#0e0579",
+      800: "#07034a",
+      900: "#02001c",
+    },
+  },
+});
 
 function App() {
   return (
-    <ChakraProvider>
-      <ThemeProvider theme={themeWhite}>
-        <GlobalStyles />
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/:title" component={Folder} />
-          </Switch>
-        </Router>
-      </ThemeProvider>
+    <ChakraProvider theme={newTheme}>
+      {/* <ThemeProvider theme={themeWhite}> */}
+      {/* <GlobalStyles /> */}
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/:title" component={Folder} />
+        </Switch>
+      </Router>
+      {/* </ThemeProvider> */}
     </ChakraProvider>
   );
 }

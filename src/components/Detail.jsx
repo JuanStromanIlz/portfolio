@@ -1,7 +1,8 @@
-import { Tag } from "@chakra-ui/react";
+import { Heading, Stack, Tag, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "./Button";
+import Gallery from "./Gallery";
 import ImageSlider from "./ImageSlider";
 import InfoTable from "./InfoTable";
 import Title from "./Title";
@@ -122,30 +123,24 @@ export default function Detail({ info }) {
           onClose={closeSlider}
         />
       )}
-      <header>
-        <Title>{info.title}</Title>
-        <h3 className="sub">{info.sub}</h3>
+      <Stack as={"header"} gap={3}>
+        <Heading as={"h1"} size={"4xl"}>
+          {info.title}
+        </Heading>
+        <Text fontSize={"2xl"}>{info.sub}</Text>
         <InfoTable
           github={info.github}
           online={info.online}
           keyWords={info.key_words}
         />
-      </header>
-      {info.images ? (
-        <div className="gallery">
-          {info.images.map((img, index) => (
-            <div onClick={() => openSlider(index)} className="image">
-              <img src={img} alt="imagen del proyecto" />
-            </div>
-          ))}
-        </div>
-      ) : null}
+      </Stack>
+      {info.images ? <Gallery images={info.images} /> : null}
       {info.description ? (
-        <div className="description">
+        <Stack width={{ lg: "70%" }}>
           {info.description.map((paraph) => (
-            <p>{paraph}</p>
+            <Text>{paraph}</Text>
           ))}
-        </div>
+        </Stack>
       ) : null}
       <div className="footer">
         <Button>
