@@ -3,7 +3,7 @@ import { Tag, Table, Tbody, Tr, Td, Wrap, Box } from "@chakra-ui/react";
 const CustomTag = ({ href, children }) => {
   if (!href) {
     return (
-      <Tag size={"lg"} borderRadius={"2xl"}>
+      <Tag size={"lg"} borderRadius={"none"}>
         {children}
       </Tag>
     );
@@ -11,7 +11,7 @@ const CustomTag = ({ href, children }) => {
   return (
     <Tag
       size={"lg"}
-      borderRadius={"2xl"}
+      borderRadius={"none"}
       as="a"
       href={href}
       _hover={{
@@ -26,7 +26,7 @@ const CustomTag = ({ href, children }) => {
 
 const InfoTable = ({ online, github, keyWords }) => (
   <Box
-    borderColor={"gray.200"}
+    borderColor={"gray.300"}
     borderWidth={1}
     borderRadius={"2xl"}
     overflow={"hidden"}
@@ -54,8 +54,8 @@ const InfoTable = ({ online, github, keyWords }) => (
             <Td>Palabras clave:</Td>
             <Td>
               <Wrap gap={2}>
-                {keyWords.map((word) => (
-                  <CustomTag>{word}</CustomTag>
+                {keyWords.map((word, index) => (
+                  <CustomTag key={index}>{word}</CustomTag>
                 ))}
               </Wrap>
             </Td>

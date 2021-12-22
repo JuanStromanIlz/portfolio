@@ -28,8 +28,8 @@ function App() {
       {/* <GlobalStyles /> */}
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/:title" component={Folder} />
+          <Route exact path="/works" component={Home} />
+          <Route path="/works/:title" component={Folder} />
         </Switch>
       </Router>
       {/* </ThemeProvider> */}

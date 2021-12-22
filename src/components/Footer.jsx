@@ -1,24 +1,57 @@
-import styled from 'styled-components';
+import {
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  Text,
+  Tooltip,
+  LinkOverlay,
+} from "@chakra-ui/react";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
-const FooterContainer = styled.footer`
-  backdrop-filter: brightness(.8);
-  display: flex;
-  flex-direction: column;
-  gap: .8rem;
-  padding: 1.6rem .8rem; 
-  span, a {
-    opacity: .8;
-    color: inherit;
-    text-align: center;
-  }
-`;
+const Footer = () => (
+  <Box bg={"gray.100"} px={3} py={6}>
+    <Flex
+      direction={"column"}
+      justifyContent={"center"}
+      gap={3}
+      alignItems={"center"}
+      textAlign={"center"}
+    >
+      <Box>
+        <Text>Juan Stroman Ilz {new Date().getFullYear()}</Text>
+      </Box>
+      <HStack gap={3}>
+        <Tooltip hasArrow label="JuanStromanIlz">
+          <IconButton
+            variant={"link"}
+            as={"a"}
+            href={"https://github.com/JuanStromanIlz"}
+            target={"_blank"}
+            icon={<FaGithub />}
+          ></IconButton>
+        </Tooltip>
+        <Tooltip hasArrow label="jstromanilz">
+          <IconButton
+            variant={"link"}
+            as={"a"}
+            href={"https://www.linkedin.com/in/jstromanilz/"}
+            target={"_blank"}
+            icon={<FaLinkedin />}
+          ></IconButton>
+        </Tooltip>
+        <Tooltip hasArrow label="juanstroman@gmail.com">
+          <IconButton
+            as={"a"}
+            href={"mailto:juanstroman@gmail.com"}
+            target={"_blank"}
+            variant={"link"}
+            icon={<FaEnvelope />}
+          ></IconButton>
+        </Tooltip>
+      </HStack>
+    </Flex>
+  </Box>
+);
 
-export default function Footer() {
-  return (
-    <FooterContainer className='contactInfo'>
-      <span>Juan Stroman Ilz 2021</span>
-      <a href='mailto:juanstroman@gmail.com'>juanstroman@gmail.com</a>
-      <span>¡Bye!</span>
-    </FooterContainer>
-  );
-}
+export default Footer;
