@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Folder from "./pages/Folder";
 import { ChakraProvider } from "@chakra-ui/provider";
 import { extendTheme } from "@chakra-ui/react";
+import Works from "./pages/Works";
 
 const newTheme = extendTheme({
   colors: {
@@ -28,7 +29,7 @@ function App() {
       {/* <GlobalStyles /> */}
       <Router>
         <Switch>
-          <Route exact path="/works" component={Home} />
+          <Route exact path="/works" component={Works} />
           <Route path="/works/:title" component={Folder} />
         </Switch>
       </Router>

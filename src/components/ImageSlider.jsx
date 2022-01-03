@@ -106,7 +106,7 @@ const GalleryModal = ({ open, images, index, onClose }) => {
         bg={"gray.100"}
       >
         <ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton borderRadius={"full"} />
         </ModalHeader>
         <ModalBody pos={"relative"}>
           {galleryData.items.map((src, index) => (
@@ -114,6 +114,7 @@ const GalleryModal = ({ open, images, index, onClose }) => {
               <Box pos={"absolute"} left={0} top={0} right={0} bottom={0}>
                 <Flex height={"100%"} p={3}>
                   <Image
+                    borderRadius={"2xl"}
                     src={src}
                     margin={"auto"}
                     width={"100%"}
@@ -138,8 +139,17 @@ const GalleryModal = ({ open, images, index, onClose }) => {
               </Breadcrumb>
             </Flex>
             <Flex direction={"row"}>
-              <IconButton onClick={prevImage} icon={<FaChevronLeft />} mr={1} />
-              <IconButton onClick={nextImage} icon={<FaChevronRight />} />
+              <IconButton
+                onClick={prevImage}
+                icon={<FaChevronLeft />}
+                mr={1}
+                borderRadius={"full"}
+              />
+              <IconButton
+                onClick={nextImage}
+                icon={<FaChevronRight />}
+                borderRadius={"full"}
+              />
             </Flex>
           </Flex>
         </ModalFooter>

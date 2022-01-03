@@ -1,57 +1,40 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  IconButton,
-  Text,
-  Tooltip,
-  LinkOverlay,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Tag } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
+const FooterTag = ({ href, children }) => (
+  <Tag
+    size={"lg"}
+    width={"fit-content"}
+    borderRadius={"2xl"}
+    as="a"
+    href={href}
+    target={"_blank"}
+    gap={2}
+  >
+    {children}
+  </Tag>
+);
+
 const Footer = () => (
-  <Box bg={"gray.100"} px={3} py={6}>
-    <Flex
-      direction={"column"}
-      justifyContent={"center"}
-      gap={3}
-      alignItems={"center"}
-      textAlign={"center"}
-    >
-      <Box>
-        <Text>Juan Stroman Ilz {new Date().getFullYear()}</Text>
-      </Box>
-      <HStack gap={3}>
-        <Tooltip hasArrow label="JuanStromanIlz">
-          <IconButton
-            variant={"link"}
-            as={"a"}
-            href={"https://github.com/JuanStromanIlz"}
-            target={"_blank"}
-            icon={<FaGithub />}
-          ></IconButton>
-        </Tooltip>
-        <Tooltip hasArrow label="jstromanilz">
-          <IconButton
-            variant={"link"}
-            as={"a"}
-            href={"https://www.linkedin.com/in/jstromanilz/"}
-            target={"_blank"}
-            icon={<FaLinkedin />}
-          ></IconButton>
-        </Tooltip>
-        <Tooltip hasArrow label="juanstroman@gmail.com">
-          <IconButton
-            as={"a"}
-            href={"mailto:juanstroman@gmail.com"}
-            target={"_blank"}
-            variant={"link"}
-            icon={<FaEnvelope />}
-          ></IconButton>
-        </Tooltip>
-      </HStack>
+  <Flex direction={"column"} px={3} py={6} mt={3}>
+    <Heading as={"h1"} size={"lg"} mb={6}>
+      Contacto:
+    </Heading>
+    <Flex direction={"column"} justifyContent={"flex-end"} gap={3}>
+      <FooterTag href={"https://github.com/JuanStromanIlz"}>
+        <FaGithub />
+        JuanStromanIlz
+      </FooterTag>
+      <FooterTag href={"https://github.com/JuanStromanIlz"}>
+        <FaLinkedin />
+        jstromanilz
+      </FooterTag>
+      <FooterTag href={"https://github.com/JuanStromanIlz"}>
+        <FaEnvelope />
+        juanstroman@gmail.com
+      </FooterTag>
     </Flex>
-  </Box>
+  </Flex>
 );
 
 export default Footer;

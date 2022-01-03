@@ -27,7 +27,7 @@ export default function Folder() {
 
   return (
     <Layout>
-      <Stack>
+      <Stack gap={6}>
         {info.images && (
           <ImageSlider
             open={imageSlider.open}
@@ -36,7 +36,7 @@ export default function Folder() {
             onClose={closeSlider}
           />
         )}
-        <Stack as={"header"} gap={3} mb={6}>
+        <Stack as={"header"} gap={3}>
           <Heading as={"h1"} size={"4xl"}>
             {info.title}
           </Heading>
@@ -48,7 +48,7 @@ export default function Folder() {
           />
         </Stack>
         {info.images && (
-          <Box my={3}>
+          <Box>
             <Gallery images={info.images} toggleAction={openSlider} />
           </Box>
         )}

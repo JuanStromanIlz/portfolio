@@ -3,7 +3,7 @@ import { Tag, Table, Tbody, Tr, Td, Wrap, Box } from "@chakra-ui/react";
 const CustomTag = ({ href, children }) => {
   if (!href) {
     return (
-      <Tag size={"lg"} borderRadius={"none"}>
+      <Tag size={"lg"} borderRadius={"2xl"}>
         {children}
       </Tag>
     );
@@ -11,11 +11,11 @@ const CustomTag = ({ href, children }) => {
   return (
     <Tag
       size={"lg"}
-      borderRadius={"none"}
+      borderRadius={"2xl"}
       as="a"
       href={href}
+      bg={"brand.100"}
       _hover={{
-        bg: "brand.100",
         textDecoration: "underline",
       }}
     >
@@ -27,6 +27,7 @@ const CustomTag = ({ href, children }) => {
 const InfoTable = ({ online, github, keyWords }) => (
   <Box
     borderColor={"gray.300"}
+    bg={"gray.50"}
     borderWidth={1}
     borderRadius={"2xl"}
     overflow={"hidden"}
@@ -35,7 +36,9 @@ const InfoTable = ({ online, github, keyWords }) => (
       <Tbody>
         {online && (
           <Tr>
-            <Td>Online:</Td>
+            <Td color={"gray.800"} fontWeight={"bold"}>
+              Online:
+            </Td>
             <Td>
               <CustomTag href={online[0]}>{online[1]}</CustomTag>
             </Td>
@@ -43,7 +46,9 @@ const InfoTable = ({ online, github, keyWords }) => (
         )}
         {github && (
           <Tr>
-            <Td>Github:</Td>
+            <Td color={"gray.800"} fontWeight={"bold"}>
+              Github:
+            </Td>
             <Td>
               <CustomTag href={github[0]}>{github[1]}</CustomTag>
             </Td>
@@ -51,7 +56,9 @@ const InfoTable = ({ online, github, keyWords }) => (
         )}
         {keyWords && (
           <Tr>
-            <Td>Palabras clave:</Td>
+            <Td color={"gray.800"} fontWeight={"bold"}>
+              Palabras clave:
+            </Td>
             <Td>
               <Wrap gap={2}>
                 {keyWords.map((word, index) => (

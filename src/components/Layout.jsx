@@ -5,9 +5,7 @@ import Navbar from "./Navbar";
 const Layout = ({ children }) => (
   <Flex direction={"column"}>
     <Navbar />
-    <Box px={3} maxWidth={1200} mx={"auto"}>
-      {children}
-    </Box>
+    <Box px={6}>{children}</Box>
     <Footer />
   </Flex>
 );

@@ -4,13 +4,42 @@ import Draggable from "react-draggable";
 import { useEffect, useRef, useState } from "react";
 
 const GalleryContainer = styled(Box)`
+  scroll-behavior: smooth;
+  cursor: ${(props) => props.grab};
+  position: relative;
   ::-webkit-scrollbar {
     display: none;
+  }
+  .left-shadow {
+    z-index: 1;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 75px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 50%
+    );
+  }
+  .right-shadow {
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 75px;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 50%
+    );
   }
 `;
 
 const Image = styled(Box)`
-  cursor: pointer;
+  overflow: hidden;
   flex: 0 0 90%;
   width: 90%;
   scroll-snap-align: start;
@@ -55,7 +84,13 @@ const Gallery = ({ images, toggleAction }) => {
   }, [images]);
 
   return (
-    <GalleryContainer ref={ref} overflowX={"auto"}>
+    <GalleryContainer
+      ref={ref}
+      overflowX={"auto"}
+      cursor={isDragging ? "grabbing" : "grab"}
+    >
+      <div className="left-shadow" />
+      <div className="right-shadow" />
       <Draggable
         axis="x"
         bounds={{ left: scrollingWidth, right: 0 }}
@@ -65,14 +100,12 @@ const Gallery = ({ images, toggleAction }) => {
       >
         <Flex gap={6} ref={nodeRef}>
           {images.map((src, index) => (
-            <Image key={index} onClick={() => clickEvent(index)}>
-              <img
-                width={"100%"}
-                src={src}
-                alt=""
-                draggable="false"
-                style={{ cursor: "pointer" }}
-              />
+            <Image
+              key={index}
+              onClick={() => clickEvent(index)}
+              borderRadius={"2xl"}
+            >
+              <img width={"100%"} src={src} alt="" draggable="false" />
             </Image>
           ))}
         </Flex>
