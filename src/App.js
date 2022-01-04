@@ -9,6 +9,7 @@ import { ChakraProvider } from "@chakra-ui/provider";
 import { extendTheme } from "@chakra-ui/react";
 import Works from "./pages/Works";
 import "@fontsource/hauora-sans";
+import About from "./pages/About";
 
 const newTheme = extendTheme({
   fonts: {
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/">
             <Redirect to="/works" />
           </Route>
+          <Route path="/about" component={About} />
           <Route exact path="/works" component={Works} />
           <Route path="/works/:title" component={Folder} />
         </Switch>

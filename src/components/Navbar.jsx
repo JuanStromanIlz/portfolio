@@ -7,11 +7,10 @@ import {
   DrawerOverlay,
   Flex,
   IconButton,
-  Stack,
   useDisclosure,
   Text,
-  Link,
   Tag,
+  DrawerFooter,
 } from "@chakra-ui/react";
 import {
   FaGripLines,
@@ -55,6 +54,16 @@ const Navbar = ({ ...props }) => {
       width={"100%"}
       zIndex={"1024"}
     >
+      <Box display={{ base: "flex", md: "none" }}>
+        <IconButton
+          bg={"transparent"}
+          _hover={{
+            bg: "transparent",
+          }}
+          onClick={onOpen}
+          icon={<FaGripLines size={36} />}
+        />
+      </Box>
       <Flex
         direction={"row"}
         display={{ base: "none", md: "flex" }}
@@ -63,11 +72,11 @@ const Navbar = ({ ...props }) => {
         <Box>
           <NavTag as={LinkRRM} to="/works">
             <FaBriefcase />
-            Works
+            Trabajos
           </NavTag>
           <NavTag as={LinkRRM} to="/about" ml={2}>
             <FaUser />
-            About
+            Sobre mi
           </NavTag>
         </Box>
         <Box>
@@ -100,6 +109,77 @@ const Navbar = ({ ...props }) => {
           </NavTag>
         </Box>
       </Flex>
+      <Drawer
+        isOpen={isOpen}
+        placement="left"
+        size={"full"}
+        onClose={onClose}
+        autoFocus={false}
+      >
+        <DrawerOverlay />
+        <DrawerContent bg={"gray.900"} color={"gray.100"}>
+          <DrawerHeader>
+            <Box>
+              <IconButton
+                bg={"transparent"}
+                _hover={{
+                  bg: "transparent",
+                }}
+                onClick={onClose}
+                icon={<FaGripLines size={36} />}
+              />
+            </Box>
+          </DrawerHeader>
+          <DrawerBody>
+            <Flex direction={"column"}>
+              <Text
+                as={LinkRRM}
+                to="/works"
+                fontSize={"5xl"}
+                fontWeight={"bold"}
+              >
+                Trabajos
+              </Text>
+              <Text
+                as={LinkRRM}
+                to="/about"
+                fontSize={"5xl"}
+                fontWeight={"bold"}
+              >
+                Sobre mi
+              </Text>
+            </Flex>
+          </DrawerBody>
+          <DrawerFooter>
+            <Flex width={"100%"} direction={"column"} gap={2}>
+              <Text
+                as={"a"}
+                target={"_blank"}
+                href={"https://www.linkedin.com/in/jstromanilz/"}
+                fontSize={"xl"}
+              >
+                Linkedin
+              </Text>
+              <Text
+                as={"a"}
+                target={"_blank"}
+                href={"https://github.com/JuanStromanIlz"}
+                fontSize={"xl"}
+              >
+                Github
+              </Text>
+              <Text
+                as={"a"}
+                target={"_blank"}
+                href={"mailto:juanstroman@gmail.com"}
+                fontSize={"xl"}
+              >
+                Email
+              </Text>
+            </Flex>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 };

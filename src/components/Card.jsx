@@ -26,7 +26,7 @@ const CardComponent = styled(Flex)`
 export default function Card({ info }) {
   return (
     <CardComponent direction={"column"} as={Link} to={`/works/${info.title}`}>
-      <Box className="image" borderRadius={"2xl"}>
+      <Box className="image" borderRadius={"2xl"} cursor={"default"}>
         <img
           src={info.images[0]}
           alt={info.title}
@@ -40,8 +40,14 @@ export default function Card({ info }) {
           height={"100%"}
         />
       </Box>
-      <Flex direction={"column"} mt={3}>
-        <Text fontSize={"2xl"} fontWeight={"bold"}>
+      <Flex direction={"column"} mt={3} cursor={"pointer"}>
+        <Text
+          fontSize={"2xl"}
+          fontWeight={"bold"}
+          _hover={{
+            textDecoration: "underline",
+          }}
+        >
           {info.title}
         </Text>
         <Text fontSize={"xl"}>{info.sub}</Text>

@@ -53,7 +53,7 @@ export default function Folder() {
           </Box>
         )}
         {info.description && (
-          <Stack fontSize={"lg"} width={{ lg: "70%" }} mx={"auto"}>
+          <Stack fontSize={"lg"} width={{ lg: "70%" }}>
             {info.description.map((paraph, index) => (
               <Text key={index}>{paraph}</Text>
             ))}
