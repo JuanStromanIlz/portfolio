@@ -16,7 +16,7 @@ const GalleryContainer = styled(Box)`
     left: 0px;
     top: 0px;
     bottom: 0px;
-    width: 75px;
+    width: 15px;
     background: linear-gradient(
       90deg,
       rgba(255, 255, 255, 1) 0%,
@@ -29,7 +29,7 @@ const GalleryContainer = styled(Box)`
     right: 0px;
     top: 0px;
     bottom: 0px;
-    width: 75px;
+    width: 15px;
     background: linear-gradient(
       270deg,
       rgba(255, 255, 255, 1) 0%,
@@ -87,7 +87,7 @@ const Gallery = ({ images, toggleAction }) => {
     <GalleryContainer
       ref={ref}
       overflowX={"auto"}
-      cursor={isDragging ? "grabbing" : "grab"}
+      cursor={isDragging ? "grabbing" : "pointer"}
     >
       <div className="left-shadow" />
       <div className="right-shadow" />

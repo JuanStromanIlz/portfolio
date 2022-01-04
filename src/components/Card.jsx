@@ -1,29 +1,31 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Box, Flex, Text } from "@chakra-ui/react";
+import styled from "styled-components";
 
-const CardContainer = styled(Flex)`
+const CardComponent = styled(Flex)`
   .image {
+    position: relative;
+    aspect-ratio: 16 / 7;
     overflow: hidden;
     img {
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-      object-fit: cover;
+      transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: absolute;
+      inset: 0;
     }
-  }
-  :hover img {
-    transform: scale(1.1);
+    img:nth-child(2) {
+      visibility: hidden;
+    }
+    :hover {
+      img:nth-child(2) {
+        visibility: visible;
+      }
+    }
   }
 `;
 
 export default function Card({ info }) {
   return (
-    <CardContainer direction={"column"} as={Link} to={`/works/${info.title}`}>
-      <Flex direction={"column"} mb={3}>
-        <Text fontSize={"2xl"} fontWeight={"bold"}>
-          {info.title}
-        </Text>
-        <Text fontSize={"xl"}>{info.sub}</Text>
-      </Flex>
+    <CardComponent direction={"column"} as={Link} to={`/works/${info.title}`}>
       <Box className="image" borderRadius={"2xl"}>
         <img
           src={info.images[0]}
@@ -31,7 +33,19 @@ export default function Card({ info }) {
           width={"100%"}
           height={"100%"}
         />
+        <img
+          src={info.images[1]}
+          alt={info.title}
+          width={"100%"}
+          height={"100%"}
+        />
       </Box>
-    </CardContainer>
+      <Flex direction={"column"} mt={3}>
+        <Text fontSize={"2xl"} fontWeight={"bold"}>
+          {info.title}
+        </Text>
+        <Text fontSize={"xl"}>{info.sub}</Text>
+      </Flex>
+    </CardComponent>
   );
 }

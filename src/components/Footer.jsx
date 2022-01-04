@@ -1,39 +1,21 @@
-import { Box, Flex, Heading, Tag } from "@chakra-ui/react";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { Flex, Text, Image } from "@chakra-ui/react";
 
-const FooterTag = ({ href, children }) => (
-  <Tag
-    size={"lg"}
-    width={"fit-content"}
-    borderRadius={"2xl"}
-    as="a"
-    href={href}
-    target={"_blank"}
+const Footer = ({ ...props }) => (
+  <Flex
+    direction={"row"}
+    bgGradient={"linear(to-b, white, gray.200, gray.300)"}
     gap={2}
+    {...props}
+    justifyContent={"center"}
   >
-    {children}
-  </Tag>
-);
-
-const Footer = () => (
-  <Flex direction={"column"} px={3} py={6} mt={3}>
-    <Heading as={"h1"} size={"lg"} mb={6}>
-      Contacto:
-    </Heading>
-    <Flex direction={"column"} justifyContent={"flex-end"} gap={3}>
-      <FooterTag href={"https://github.com/JuanStromanIlz"}>
-        <FaGithub />
-        JuanStromanIlz
-      </FooterTag>
-      <FooterTag href={"https://github.com/JuanStromanIlz"}>
-        <FaLinkedin />
-        jstromanilz
-      </FooterTag>
-      <FooterTag href={"https://github.com/JuanStromanIlz"}>
-        <FaEnvelope />
-        juanstroman@gmail.com
-      </FooterTag>
-    </Flex>
+    <Image
+      src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg"
+      height={"12px"}
+      my={"auto"}
+      alt=""
+    />
+    <Text fontSize={"sm"}>JuanStromanIlz</Text>
+    <Text fontSize={"sm"}>{new Date().getFullYear()}.</Text>
   </Flex>
 );
 

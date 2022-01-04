@@ -1,11 +1,20 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Folder from "./pages/Folder";
 import { ChakraProvider } from "@chakra-ui/provider";
 import { extendTheme } from "@chakra-ui/react";
 import Works from "./pages/Works";
+import "@fontsource/hauora-sans";
 
 const newTheme = extendTheme({
+  fonts: {
+    body: "Hauora Sans",
+    heading: "Hauora Sans",
+  },
   colors: {
     brand: {
       50: "#e8e5ff",
@@ -25,15 +34,15 @@ const newTheme = extendTheme({
 function App() {
   return (
     <ChakraProvider theme={newTheme}>
-      {/* <ThemeProvider theme={themeWhite}> */}
-      {/* <GlobalStyles /> */}
       <Router>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/works" />
+          </Route>
           <Route exact path="/works" component={Works} />
           <Route path="/works/:title" component={Folder} />
         </Switch>
       </Router>
-      {/* </ThemeProvider> */}
     </ChakraProvider>
   );
 }

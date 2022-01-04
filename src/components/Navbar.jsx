@@ -11,81 +11,95 @@ import {
   useDisclosure,
   Text,
   Link,
+  Tag,
 } from "@chakra-ui/react";
-import { FaGripLines } from "react-icons/fa";
+import {
+  FaGripLines,
+  FaBriefcase,
+  FaUser,
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+} from "react-icons/fa";
 import { Link as LinkRRM } from "react-router-dom";
 
-const Navbar = () => {
+const NavTag = ({ children, ...props }) => (
+  <Tag
+    size={"lg"}
+    width={"fit-content"}
+    color={"gray.800"}
+    bg={"transparent"}
+    borderRadius={"2xl"}
+    gap={2}
+    fontSize={"lg"}
+    fontWeight={"bold"}
+    _hover={{
+      color: "gray.100",
+      bg: "gray.800",
+    }}
+    {...props}
+  >
+    {children}
+  </Tag>
+);
+
+const Navbar = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box
-      maxWidth={1200}
-      mx={"auto"}
+      {...props}
       p={3}
-      position={"sticky"}
+      position={{ base: "sticky", md: "inherit" }}
       top={0}
       width={"100%"}
       zIndex={"1024"}
     >
-      <Flex>
-        <Box display={{ base: "block", md: "none" }}>
-          <IconButton
-            variant={"ghost"}
-            icon={<FaGripLines size={32} />}
-            onClick={onOpen}
-          />
+      <Flex
+        direction={"row"}
+        display={{ base: "none", md: "flex" }}
+        justifyContent={"space-between"}
+      >
+        <Box>
+          <NavTag as={LinkRRM} to="/works">
+            <FaBriefcase />
+            Works
+          </NavTag>
+          <NavTag as={LinkRRM} to="/about" ml={2}>
+            <FaUser />
+            About
+          </NavTag>
         </Box>
-        <Flex direction={"row"} display={{ base: "none", md: "block" }}>
-          <Link as={LinkRRM} fontSize={"lg"} fontWeight={"bold"} to="/works">
-            WORKS
-          </Link>
-          <Link
-            as={LinkRRM}
-            fontSize={"lg"}
-            fontWeight={"bold"}
-            to="/about"
-            ml={3}
+        <Box>
+          <NavTag
+            as={"a"}
+            target={"_blank"}
+            href={"https://www.linkedin.com/in/jstromanilz/"}
+            ml={2}
           >
-            ABOUT
-          </Link>
-        </Flex>
+            <FaLinkedin />
+            Linkedin
+          </NavTag>
+          <NavTag
+            as={"a"}
+            target={"_blank"}
+            href={"https://github.com/JuanStromanIlz"}
+            ml={2}
+          >
+            <FaGithub />
+            Github
+          </NavTag>
+          <NavTag
+            as={"a"}
+            target={"_blank"}
+            href={"mailto:juanstroman@gmail.com"}
+            ml={2}
+          >
+            <FaEnvelope />
+            Email
+          </NavTag>
+        </Box>
       </Flex>
-      <Drawer placement="left" isOpen={isOpen} onClose={onClose} size={"full"}>
-        <DrawerOverlay />
-        <DrawerContent bg={"black"}>
-          <DrawerHeader>
-            <IconButton
-              variant={"ghost"}
-              icon={<FaGripLines size={32} />}
-              onClick={onClose}
-              color={"white"}
-            />
-          </DrawerHeader>
-          <DrawerBody>
-            <Stack>
-              <Text
-                as={Link}
-                color={"white"}
-                fontSize={"4xl"}
-                fontWeight={"bold"}
-                to="/works"
-              >
-                WORKS
-              </Text>
-              <Text
-                as={Link}
-                color={"white"}
-                fontSize={"4xl"}
-                fontWeight={"bold"}
-                to="/about"
-              >
-                ABOUT
-              </Text>
-            </Stack>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </Box>
   );
 };
