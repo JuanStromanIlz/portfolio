@@ -10,7 +10,6 @@ import {
   useDisclosure,
   Text,
   Tag,
-  DrawerFooter,
 } from "@chakra-ui/react";
 import {
   FaGripLines,
@@ -149,9 +148,7 @@ const Navbar = ({ ...props }) => {
                 Sobre mi
               </Text>
             </Flex>
-          </DrawerBody>
-          <DrawerFooter>
-            <Flex width={"100%"} direction={"column"} gap={2}>
+            <Flex width={"100%"} direction={"column"} gap={2} mt={3}>
               <Text
                 as={"a"}
                 target={"_blank"}
@@ -177,7 +174,7 @@ const Navbar = ({ ...props }) => {
                 Email
               </Text>
             </Flex>
-          </DrawerFooter>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </Box>

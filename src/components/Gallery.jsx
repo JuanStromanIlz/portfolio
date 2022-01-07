@@ -1,45 +1,27 @@
 import styled from "styled-components";
 import { Box, Flex } from "@chakra-ui/react";
-import Draggable from "react-draggable";
-import { useEffect, useRef, useState } from "react";
 
-const GalleryContainer = styled(Box)`
+const GalleryContainer = styled(Flex)`
   scroll-behavior: smooth;
-  cursor: ${(props) => props.grab};
-  position: relative;
-  ::-webkit-scrollbar {
-    display: none;
+  &::-webkit-scrollbar {
+    scrollbar-width: thin;
+    width: 20x;
+    background: transparent;
+    opacity: 0.3;
   }
-  .left-shadow {
-    z-index: 1;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 15px;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 50%
-    );
+  &::-webkit-scrollbar-thumb {
+    background-color: #a0aec0;
+    border-radius: 1rem;
+    border: 6px solid white;
   }
-  .right-shadow {
-    z-index: 1;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 15px;
-    background: linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 50%
-    );
+  &::-webkit-scrollbar-thumb:hover {
+    border-width: 4px;
   }
 `;
 
 const Image = styled(Box)`
   overflow: hidden;
+  cursor: pointer;
   flex: 0 0 90%;
   width: 90%;
   scroll-snap-align: start;
@@ -61,55 +43,17 @@ const Image = styled(Box)`
 `;
 
 const Gallery = ({ images, toggleAction }) => {
-  const ref = useRef(null);
-  const nodeRef = useRef();
-  const [isDragging, setIsDragging] = useState(false);
-  const [scrollingWidth, setScrollingWidth] = useState(0);
-
-  const onDrag = () => setIsDragging(true);
-  const onStop = () =>
-    setTimeout(() => {
-      setIsDragging(false);
-    }, 100);
-  const clickEvent = (index) => {
-    if (isDragging) return;
-    toggleAction(index);
-  };
-
-  useEffect(() => {
-    if (ref !== null) {
-      let width = ref.current.scrollWidth - ref.current.clientWidth - 1;
-      setScrollingWidth(-Math.abs(width));
-    }
-  }, [images]);
-
   return (
-    <GalleryContainer
-      ref={ref}
-      overflowX={"auto"}
-      cursor={isDragging ? "grabbing" : "pointer"}
-    >
-      <div className="left-shadow" />
-      <div className="right-shadow" />
-      <Draggable
-        axis="x"
-        bounds={{ left: scrollingWidth, right: 0 }}
-        onDrag={onDrag}
-        onStop={onStop}
-        nodeRef={nodeRef}
-      >
-        <Flex gap={6} ref={nodeRef}>
-          {images.map((src, index) => (
-            <Image
-              key={index}
-              onClick={() => clickEvent(index)}
-              borderRadius={"2xl"}
-            >
-              <img width={"100%"} src={src} alt="" draggable="false" />
-            </Image>
-          ))}
-        </Flex>
-      </Draggable>
+    <GalleryContainer overflowX={"auto"} gap={6}>
+      {images.map((src, index) => (
+        <Image
+          key={index}
+          onClick={() => toggleAction(index)}
+          borderRadius={"2xl"}
+        >
+          <img width={"100%"} src={src} alt="" draggable="false" />
+        </Image>
+      ))}
     </GalleryContainer>
   );
 };
