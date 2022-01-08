@@ -8,8 +8,10 @@ import Folder from "./pages/Folder";
 import { ChakraProvider } from "@chakra-ui/provider";
 import { extendTheme } from "@chakra-ui/react";
 import Works from "./pages/Works";
-import "@fontsource/hauora-sans";
 import About from "./pages/About";
+import Test from "./pages/Test";
+import NewFolder from "./pages/NewFolder";
+import "@fontsource/hauora-sans";
 
 const newTheme = extendTheme({
   fonts: {
@@ -42,7 +44,9 @@ function App() {
           </Route>
           <Route path="/about" component={About} />
           <Route exact path="/works" component={Works} />
+          <Route exact path="/works/new" component={NewFolder} />
           <Route path="/works/:title" component={Folder} />
+          <Route path="/test" component={Test} />
         </Switch>
       </Router>
     </ChakraProvider>

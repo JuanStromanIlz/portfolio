@@ -42,7 +42,9 @@ async function create(data) {
       created: Timestamp.now(),
       updated: Timestamp.now(),
     });
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function update(data, id) {

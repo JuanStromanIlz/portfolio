@@ -4,12 +4,17 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.7.3",
+    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+    "@ckeditor/ckeditor5-react": "^3.0.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@fontsource/hauora-sans": "^4.5.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "firebase": "^9.6.2",
+    "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -18,7 +23,8 @@
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.2",
     "styled-components": "^5.2.3",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -55,7 +55,9 @@ const FolderForm = ({ folder, onSubmit }) => {
   }
 
   function handleSubmit(values) {
-    onSubmit(values);
+    onSubmit({ ...values, newImages: newImages });
+    setNewImages([]);
+    setNewKeyWord("");
   }
 
   return (
@@ -104,9 +106,8 @@ const FolderForm = ({ folder, onSubmit }) => {
                     {values.keyWords.length > 0 && (
                       <Wrap>
                         {values.keyWords.map((word, index) => (
-                          <WrapItem>
+                          <WrapItem key={index}>
                             <Tag
-                              key={index}
                               width={"fit-content"}
                               borderRadius={"2xl"}
                               size={"lg"}
