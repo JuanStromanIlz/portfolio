@@ -2,7 +2,6 @@ import { db } from "../firebase";
 import {
   query,
   doc,
-  getDoc,
   getDocs,
   addDoc,
   updateDoc,
@@ -10,61 +9,46 @@ import {
   orderBy,
   collection,
   Timestamp,
+  where,
+  limit,
 } from "firebase/firestore";
 
 const worksRef = collection(db, "works");
 
 const docRef = (id) => doc(db, "works", id);
 
-async function getWorks() {
-  try {
-    let q = query(worksRef, orderBy("created", "desc"));
-    let docsSnap = await getDocs(q);
-    return docsSnap;
-  } catch (err) {}
+function getWorks() {
+  let q = query(worksRef, orderBy("created", "desc"));
+  return getDocs(q);
 }
 
-async function getById(id) {
-  try {
-    let docSnap = await getDoc(docRef(id));
-
-    if (!docSnap.exists()) {
-      throw new Error("No such doc");
-    }
-    return docSnap;
-  } catch (err) {}
+function getByTitle(title) {
+  let q = query(worksRef, where("title", "==", title), limit(1));
+  return getDocs(q);
 }
 
-async function create(data) {
-  try {
-    await addDoc(worksRef, {
-      ...data,
-      created: Timestamp.now(),
-      updated: Timestamp.now(),
-    });
-  } catch (err) {
-    console.error(err);
-  }
+function create(data) {
+  return addDoc(worksRef, {
+    ...data,
+    created: Timestamp.now(),
+    updated: Timestamp.now(),
+  });
 }
 
-async function update(data, id) {
-  try {
-    await updateDoc(docRef(id), {
-      ...data,
-      updated: Timestamp.now(),
-    });
-  } catch (err) {}
+function update(data, id) {
+  return updateDoc(docRef(id), {
+    ...data,
+    updated: Timestamp.now(),
+  });
 }
 
-async function deleteFromCollection(id) {
-  try {
-    await deleteDoc(docRef(id));
-  } catch (err) {}
+function deleteFromCollection(id) {
+  return deleteDoc(docRef(id));
 }
 
 const works = {
   get: getWorks,
-  getById,
+  getByTitle,
   create,
   update,
   delete: deleteFromCollection,

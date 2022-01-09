@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Heading, Stack, Box, Text } from "@chakra-ui/react";
+import {
+  Heading,
+  Stack,
+  Box,
+  Text,
+  Skeleton,
+  SkeletonText,
+} from "@chakra-ui/react";
 import Gallery from "../components/Gallery";
 import ImageSlider from "../components/ImageSlider";
 import InfoTable from "../components/InfoTable";
-import trabajos from "../trabajos.json";
 import Layout from "../components/Layout";
+import works from "../services/works";
 
 export default function Folder() {
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState(undefined);
   const { title } = useParams();
 
   const [imageSlider, setImageSlider] = useState({
@@ -21,9 +28,30 @@ export default function Folder() {
   const closeSlider = () => setImageSlider({ open: false, index: 0 });
 
   useEffect(() => {
-    let folder = trabajos.find((item) => item.title === title);
-    setInfo(folder);
+    async function getFolderFromServer(title) {
+      try {
+        let docs = await works.getByTitle(title);
+        docs.forEach((doc) => {
+          setInfo({ id: doc.id, ...doc.data() });
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getFolderFromServer(title);
   }, [title]);
+
+  if (!info) {
+    return (
+      <Layout>
+        <Stack gap={6}>
+          <Skeleton height={"24"} />
+          <Skeleton height={"xs"} />
+          <SkeletonText noOfLines={4} spacing={3} />
+        </Stack>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -44,7 +72,7 @@ export default function Folder() {
           <InfoTable
             github={info.github}
             online={info.online}
-            keyWords={info.key_words}
+            keyWords={info.keyWords}
           />
         </Stack>
         {info.images && (
@@ -54,9 +82,7 @@ export default function Folder() {
         )}
         {info.description && (
           <Stack fontSize={"lg"} width={{ lg: "70%" }}>
-            {info.description.map((paraph, index) => (
-              <Text key={index}>{paraph}</Text>
-            ))}
+            <Text dangerouslySetInnerHTML={{ __html: info.description }} />
           </Stack>
         )}
       </Stack>

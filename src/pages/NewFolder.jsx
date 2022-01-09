@@ -24,7 +24,10 @@ const NewFolder = () => {
         ...rest,
         images: [...images, ...urls],
       });
-    } catch (err) {}
+      console.log("document added.");
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (

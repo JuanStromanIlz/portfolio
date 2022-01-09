@@ -22,9 +22,11 @@ import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 
-const validationSchema = Yup.object({});
+const validationSchema = Yup.object({
+  title: Yup.string().required("El titulo es requerido."),
+});
 
 const FolderForm = ({ folder, onSubmit }) => {
   const [newKeyWord, setNewKeyWord] = useState("");
@@ -33,6 +35,7 @@ const FolderForm = ({ folder, onSubmit }) => {
   function handleKeyWord(push) {
     setNewKeyWord((prev) => {
       push(prev);
+      document.getElementById("addKeyWord").focus();
       return "";
     });
   }
@@ -152,10 +155,8 @@ const FolderForm = ({ folder, onSubmit }) => {
               <Text fontWeight={"bold"} mb={3}>
                 Github
               </Text>
-              <FormLabel htmlFor="github.name">Nombre</FormLabel>
               <Field as={Input} name="github.name" id="github.link" />
               <FormHelperText mb={2}>Nombre visible</FormHelperText>
-              <FormLabel htmlFor="github.link">Link</FormLabel>
               <Field as={Input} name="github.link" id="github.link" />
               <FormHelperText>El link al que va a apuntar</FormHelperText>
             </FormControl>
@@ -163,18 +164,17 @@ const FolderForm = ({ folder, onSubmit }) => {
               <Text fontWeight={"bold"} mb={3}>
                 Online
               </Text>
-              <FormLabel htmlFor="online.name">Nombre</FormLabel>
               <Field as={Input} name="online.name" id="online.link" />
               <FormHelperText mb={2}>Nombre visible</FormHelperText>
-              <FormLabel htmlFor="online.link">Link</FormLabel>
               <Field as={Input} name="online.link" id="online.link" />
               <FormHelperText>El link al que va a apuntar</FormHelperText>
             </FormControl>
-            <FormControl isInvalid={errors.description && touched.description}>
+            <FormControl>
               <FormLabel fontWeight={"bold"} htmlFor="description">
                 Descripción
               </FormLabel>
               <CKEditor
+                data={values.description}
                 editor={ClassicEditor}
                 onChange={(_, editor) => {
                   setFieldValue("description", editor.getData());
