@@ -28,13 +28,13 @@ export default function Card({ info }) {
     <CardComponent direction={"column"} as={Link} to={`/works/${info.title}`}>
       <Box className="image" borderRadius={"2xl"} cursor={"default"}>
         <img
-          src={info.images[0]}
+          src={info.images[0].url}
           alt={info.title}
           width={"100%"}
           height={"100%"}
         />
         <img
-          src={info.images[1]}
+          src={info.images[1].url}
           alt={info.title}
           width={"100%"}
           height={"100%"}

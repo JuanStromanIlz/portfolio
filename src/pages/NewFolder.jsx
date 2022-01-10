@@ -1,44 +1,55 @@
-import { Heading, Stack } from "@chakra-ui/react";
-import axios from "axios";
+import { Heading, Stack, useToast } from "@chakra-ui/react";
 import FolderForm from "../components/FolderForm";
-import Layout from "../components/Layout";
+import storage from "../services/storage";
 import works from "../services/works";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const NewFolder = () => {
+  const [isSubmit, setIsSubmit] = useState(false);
+  const history = useHistory();
+  const toast = useToast();
+
   async function createFolder(values) {
-    const { newImages, images, ...rest } = values;
-    const { REACT_APP_CLOUDINARY_CLOUD_NAME } = process.env;
+    const { newImages, title, ...rest } = values;
     try {
-      let urls = [];
-      for (const { data } of newImages) {
-        let formData = new FormData();
-        formData.append("file", data);
-        formData.append("upload_preset", "hoi3ozqo");
-        let res = await axios.post(
-          `https://api.cloudinary.com/v1_1/${REACT_APP_CLOUDINARY_CLOUD_NAME}/upload`,
-          formData
-        );
-        urls.push(res.data.secure_url);
-      }
-      await works.create({
-        ...rest,
-        images: [...images, ...urls],
+      setIsSubmit(true);
+      let { id } = await works.create({ ...rest, title });
+      let files = await newImages.map(({ data }) => data);
+      let urls = await storage.upload(files, id);
+      await works.update({
+        id,
+        images: [...urls],
       });
-      console.log("document added.");
-    } catch (err) {
-      console.error(err);
+      toast({
+        title: "Carpeta creada con exito.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      history.push(`/works/${title}`);
+    } catch ({ message }) {
+      toast({
+        title: "Ocurrio un error al intentar crear la carpeta",
+        description: message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   }
 
+  useEffect(() => {
+    return () => setIsSubmit(false);
+  }, []);
+
   return (
-    <Layout>
-      <Stack>
-        <Heading as={"h1"} size={"4xl"} mb={6}>
-          Nueva carpeta
-        </Heading>
-        <FolderForm onSubmit={createFolder} />
-      </Stack>
-    </Layout>
+    <Stack>
+      <Heading as={"h1"} size={"4xl"} mb={6}>
+        Nueva carpeta
+      </Heading>
+      <FolderForm isSubmit={isSubmit} onSubmit={createFolder} />
+    </Stack>
   );
 };
 

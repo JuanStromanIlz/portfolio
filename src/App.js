@@ -9,9 +9,11 @@ import { ChakraProvider } from "@chakra-ui/provider";
 import { extendTheme } from "@chakra-ui/react";
 import Works from "./pages/Works";
 import About from "./pages/About";
-import Test from "./pages/Test";
 import NewFolder from "./pages/NewFolder";
+import EditFolder from "./pages/EditFolder";
 import "@fontsource/hauora-sans";
+import Layout from "./components/Layout";
+import AdminContext from "./context/Admin";
 
 const newTheme = extendTheme({
   fonts: {
@@ -38,16 +40,20 @@ function App() {
   return (
     <ChakraProvider theme={newTheme}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/works" />
-          </Route>
-          <Route path="/about" component={About} />
-          <Route exact path="/works" component={Works} />
-          <Route exact path="/works/new" component={NewFolder} />
-          <Route path="/works/:title" component={Folder} />
-          <Route path="/test" component={Test} />
-        </Switch>
+        <AdminContext>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/works" />
+              </Route>
+              <Route path="/about" component={About} />
+              <Route exact path="/works" component={Works} />
+              <Route exact path="/works/new" component={NewFolder} />
+              <Route exact path="/works/:title" component={Folder} />
+              <Route path="/works/edit/:title" component={EditFolder} />
+            </Switch>
+          </Layout>
+        </AdminContext>
       </Router>
     </ChakraProvider>
   );

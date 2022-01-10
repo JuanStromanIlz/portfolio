@@ -109,13 +109,13 @@ const GalleryModal = ({ open, images, index, onClose }) => {
           <ModalCloseButton borderRadius={"full"} />
         </ModalHeader>
         <ModalBody pos={"relative"}>
-          {galleryData.items.map((src, index) => (
+          {galleryData.items.map(({ url }, index) => (
             <Fade in={index === galleryData.index} key={index}>
               <Box pos={"absolute"} left={0} top={0} right={0} bottom={0}>
                 <Flex height={"100%"} p={3}>
                   <Image
                     borderRadius={"2xl"}
-                    src={src}
+                    src={url}
                     margin={"auto"}
                     width={"100%"}
                     maxWidth={["100%", "70vw"]}

@@ -45,13 +45,13 @@ const Image = styled(Box)`
 const Gallery = ({ images, toggleAction }) => {
   return (
     <GalleryContainer overflowX={"auto"} gap={6}>
-      {images.map((src, index) => (
+      {images.map(({ url }, index) => (
         <Image
           key={index}
           onClick={() => toggleAction(index)}
           borderRadius={"2xl"}
         >
-          <img width={"100%"} src={src} alt="" draggable="false" />
+          <img width={"100%"} src={url} alt="" draggable="false" />
         </Image>
       ))}
     </GalleryContainer>

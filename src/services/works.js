@@ -35,9 +35,10 @@ function create(data) {
   });
 }
 
-function update(data, id) {
+function update(data) {
+  const { id, ...rest } = data;
   return updateDoc(docRef(id), {
-    ...data,
+    ...rest,
     updated: Timestamp.now(),
   });
 }

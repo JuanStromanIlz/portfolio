@@ -17,6 +17,7 @@ import {
   GridItem,
   SimpleGrid,
   FormHelperText,
+  Flex,
 } from "@chakra-ui/react";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -28,7 +29,7 @@ const validationSchema = Yup.object({
   title: Yup.string().required("El titulo es requerido."),
 });
 
-const FolderForm = ({ folder, onSubmit }) => {
+const FolderForm = ({ isSubmit, folder, onSubmit }) => {
   const [newKeyWord, setNewKeyWord] = useState("");
   const [newImages, setNewImages] = useState([]);
 
@@ -72,7 +73,7 @@ const FolderForm = ({ folder, onSubmit }) => {
         resetForm();
       }}
     >
-      {({ dirty, values, errors, touched, setFieldValue, setFieldTouched }) => (
+      {({ values, errors, touched, setFieldValue, setFieldTouched }) => (
         <Form>
           <Stack gap={3}>
             <FormControl isInvalid={errors.title && touched.title}>
@@ -135,6 +136,7 @@ const FolderForm = ({ folder, onSubmit }) => {
                       </Wrap>
                     )}
                     <Field
+                      width={"50%"}
                       as={Input}
                       id="addKeyWord"
                       value={newKeyWord}
@@ -151,24 +153,26 @@ const FolderForm = ({ folder, onSubmit }) => {
                 )}
               </FieldArray>
             </FormControl>
-            <FormControl>
-              <Text fontWeight={"bold"} mb={3}>
-                Github
-              </Text>
-              <Field as={Input} name="github.name" id="github.link" />
-              <FormHelperText mb={2}>Nombre visible</FormHelperText>
-              <Field as={Input} name="github.link" id="github.link" />
-              <FormHelperText>El link al que va a apuntar</FormHelperText>
-            </FormControl>
-            <FormControl>
-              <Text fontWeight={"bold"} mb={3}>
-                Online
-              </Text>
-              <Field as={Input} name="online.name" id="online.link" />
-              <FormHelperText mb={2}>Nombre visible</FormHelperText>
-              <Field as={Input} name="online.link" id="online.link" />
-              <FormHelperText>El link al que va a apuntar</FormHelperText>
-            </FormControl>
+            <Flex gap={3}>
+              <FormControl>
+                <Text fontWeight={"bold"} mb={3}>
+                  Github
+                </Text>
+                <Field as={Input} name="github.name" id="github.link" />
+                <FormHelperText mb={2}>Nombre visible</FormHelperText>
+                <Field as={Input} name="github.link" id="github.link" />
+                <FormHelperText>El link al que va a apuntar</FormHelperText>
+              </FormControl>
+              <FormControl>
+                <Text fontWeight={"bold"} mb={3}>
+                  Online
+                </Text>
+                <Field as={Input} name="online.name" id="online.link" />
+                <FormHelperText mb={2}>Nombre visible</FormHelperText>
+                <Field as={Input} name="online.link" id="online.link" />
+                <FormHelperText>El link al que va a apuntar</FormHelperText>
+              </FormControl>
+            </Flex>
             <FormControl>
               <FormLabel fontWeight={"bold"} htmlFor="description">
                 Descripción
@@ -192,10 +196,10 @@ const FolderForm = ({ folder, onSubmit }) => {
                   <Stack>
                     <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} gap={3}>
                       {values.images.length > 0 &&
-                        values.images.map((src, index) => (
+                        values.images.map(({ url }, index) => (
                           <GridItem key={index} position={"relative"}>
                             <Image
-                              src={src}
+                              src={url}
                               alt=""
                               width={"100%"}
                               height={"100%"}
@@ -250,8 +254,18 @@ const FolderForm = ({ folder, onSubmit }) => {
                 )}
               </FieldArray>
             </FormControl>
-            <Button type="submit" disabled={!dirty}>
-              Agregar trabajo
+            <Button
+              colorScheme={"brand"}
+              width={"fit-content"}
+              isLoading={isSubmit}
+              loadingText={
+                folder.title.length > 0
+                  ? "Guardando cambios"
+                  : "Creando la carpeta"
+              }
+              type="submit"
+            >
+              {folder.title.length > 0 ? "Editar Carpeta" : "Crear Carpeta"}
             </Button>
           </Stack>
         </Form>
