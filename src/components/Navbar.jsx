@@ -10,6 +10,7 @@ import {
   useDisclosure,
   Text,
   Tag,
+  Avatar,
 } from "@chakra-ui/react";
 import {
   FaGripLines,
@@ -18,8 +19,11 @@ import {
   FaLinkedin,
   FaGithub,
   FaEnvelope,
+  FaRegNewspaper,
 } from "react-icons/fa";
 import { Link as LinkRRM } from "react-router-dom";
+import { useContext } from "react";
+import { Admin } from "../context/Admin";
 
 const NavTag = ({ children, ...props }) => (
   <Tag
@@ -43,6 +47,15 @@ const NavTag = ({ children, ...props }) => (
 
 const Navbar = ({ ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user, signIn, signOut } = useContext(Admin);
+
+  const toggleLogin = () => {
+    if (!user) {
+      signIn();
+    } else {
+      signOut();
+    }
+  };
 
   return (
     <Box
@@ -60,7 +73,7 @@ const Navbar = ({ ...props }) => {
             bg: "transparent",
           }}
           onClick={onOpen}
-          icon={<FaGripLines size={36} />}
+          icon={<FaGripLines />}
         />
       </Box>
       <Flex
@@ -77,6 +90,20 @@ const Navbar = ({ ...props }) => {
             <FaUser />
             Sobre mi
           </NavTag>
+          {user && (
+            <NavTag
+              as={LinkRRM}
+              to="/works/new"
+              ml={2}
+              color={"green"}
+              _hover={{
+                color: "green",
+              }}
+            >
+              <FaRegNewspaper />
+              Nuevo
+            </NavTag>
+          )}
         </Box>
         <Box>
           <NavTag
@@ -106,6 +133,14 @@ const Navbar = ({ ...props }) => {
             <FaEnvelope />
             Email
           </NavTag>
+          <Avatar
+            size={"sm"}
+            name={user ? user.displayName : null}
+            src={user ? user.photoURL : null}
+            cursor={"pointer"}
+            ml={2}
+            onClick={toggleLogin}
+          />
         </Box>
       </Flex>
       <Drawer
@@ -125,12 +160,19 @@ const Navbar = ({ ...props }) => {
                   bg: "transparent",
                 }}
                 onClick={onClose}
-                icon={<FaGripLines size={36} />}
+                icon={<FaGripLines />}
               />
             </Box>
           </DrawerHeader>
           <DrawerBody>
             <Flex direction={"column"}>
+              <Avatar
+                name={user ? user.displayName : null}
+                src={user ? user.photoURL : null}
+                cursor={"pointer"}
+                mb={2}
+                onClick={toggleLogin}
+              />
               <Text
                 as={LinkRRM}
                 to="/works"
@@ -146,6 +188,14 @@ const Navbar = ({ ...props }) => {
                 fontWeight={"bold"}
               >
                 Sobre mi
+              </Text>
+              <Text
+                as={LinkRRM}
+                to="/works/new"
+                fontSize={"5xl"}
+                fontWeight={"bold"}
+              >
+                Nuevo
               </Text>
             </Flex>
             <Flex width={"100%"} direction={"column"} gap={2} mt={3}>

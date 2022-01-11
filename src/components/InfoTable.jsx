@@ -40,7 +40,7 @@ const InfoTable = ({ online, github, keyWords }) => (
               Online:
             </Td>
             <Td>
-              <CustomTag href={online[0]}>{online[1]}</CustomTag>
+              <CustomTag href={online.link}>{online.name}</CustomTag>
             </Td>
           </Tr>
         )}
@@ -50,7 +50,7 @@ const InfoTable = ({ online, github, keyWords }) => (
               Github:
             </Td>
             <Td>
-              <CustomTag href={github[0]}>{github[1]}</CustomTag>
+              <CustomTag href={github.link}>{github.name}</CustomTag>
             </Td>
           </Tr>
         )}
